@@ -19,7 +19,6 @@ main()
   .catch((err) => {
     console.log(err);
   });
-
 async function main() {
   await mongoose.connect(MONGO_URL);
 }
@@ -32,7 +31,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/", (req, res) => {
-  res.send("Hi, I am rushi kasav");
+  res.send("Hi, I am root");
 });
 
 const validateListing = (req, res, next) => {
@@ -55,7 +54,7 @@ const validateReview = (req, res, next) => {
     next();
   }
 };
-// // Index Route
+// Index Route
 
 app.get(
   "/listings",
@@ -183,3 +182,4 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log("server is listening to port 3000");
 });
+
