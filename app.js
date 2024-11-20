@@ -31,14 +31,6 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
-app.get(
-  "/listings",
-  wrapAsync(async (req, res) => {
-    const allListings = await Listing.find({});
-    console.log(allListings)
-    res.render("listings/index.ejs", { allListings });
-  });
-
 app.get("/", (req, res) => {
   res.send("Hi, I am root");
 });
@@ -65,14 +57,14 @@ const validateReview = (req, res, next) => {
 };
 // Index Route
 
-// app.get(
-//   "/listings",
-//   wrapAsync(async (req, res) => {
-//     const allListings = await Listing.find({});
-//     console.log(allListings)
-//     res.render("listings/index.ejs", { allListings });
-//   })
-// );
+app.get(
+  "/listings",
+  wrapAsync(async (req, res) => {
+    const allListings = await Listing.find({});
+    console.log(allListings)
+    res.render("listings/index.ejs", { allListings });
+  })
+);
 
 //New Route
 app.get("/listings/new", (req, res) => {
