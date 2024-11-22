@@ -1,32 +1,38 @@
 <% layout("/layouts/boilerplate") %>
     <div class="row mt-3">
         <div class="col-8 offset-3">
-            <h3>Listing Details</h3>
-            <div class="card listing-card mt-3">
-                <div class="card listing-card" style="width:18rem;">
-                    <img src="<%= listing.image %>" class="card-img-top" alt="Listing_image">
+            <h3><%= listing.title %></h3>
+        </div>
+               <div class ="card col-6 offset-3 show-card listing-card">
+                    <img src="<%= listing.image %>" 
+                    class="card-img-top show-img"
+                     alt="Listing_image"
+                     />
                     <div class="card-body">
-                        <p class="card-text">
-                            <b><%= listing.title %></b> <br>
-                            <%= listing.description %> <br> &#8377;
-                                <%= listing.price.toLocaleString("en-IN") %> <br>
+                        <p class="card-text text-start">
+                            <%= listing.description %> <br> 
+                            &#8377;<%= listing.price.toLocaleString("en-IN") %> <br/>
                                     <%= listing.location %> <br>
                                         <%= listing.country %>
                         </p>
                     </div>
                 </div>
-            </div>
-            <div class="btns mb-5">
-                <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-2 offset-1 edit-btn">Edit</a>
+           <br />
+           <br>
+            <div class="btns mt-2">
+                <a href="/listings/<%= listing._id %>/edit"
+                     class="btn btn-dark col-1 offset-3 edit-btn"
+                     >Edit</a>
                 <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-                    <button class="btn btn-dark  offset-6">Delete</button>
+                    <button class="btn btn-dark  offset-5">Delete</button>
             </div>
             </form>
         </div>
-
-        <div class="col-7 offset-5 mb-3">
+        <hr>
+<!--  -->
+        <div class="col-8 offset-3 mb-3">
             <h4>Leave a Review:</h4>
-            <hr>
+    
             <form action="/listings/<%= listing.id %>/reviews" method="post" novalidate class="needs-validation">
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="rating">Rating</label>
@@ -34,7 +40,7 @@
                 </div>
                 <div class="mb-3 mt-3">
                     <label class="form-label" for="comment">Comments:</label>
-                    <textarea class="rounded" name="review[comment]" id="comment" cols="90" rows="5"></textarea>
+                    <textarea  name="review[comment]" id="comment" cols="90" rows="5" class="form-control"></textarea>
                     <div class="invalid-feedback">Please add some comments for review</div>
                     <div class="valid-feedback">Thanks for comment</div>
                 </div>
@@ -64,7 +70,7 @@
 
             <!-- Comment Styling:- -->
 
-            <p><b>All Comments:</b></p>
+            <p><b>All Reviews:</b></p>
             <div class="row">
                 <% for(review of listing.reviews){ %>
                     <div class="card col-5 ms-3 mb-3">
