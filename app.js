@@ -32,7 +32,7 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "/public")));
 
 app.get("/", (req, res) => {
-  res.send("Hi, I am root");
+  res.redirect("/listings");
 });
 
 // const validateListing = (req, res, next) => {
@@ -124,7 +124,7 @@ const validateReview = (req, res, next) => {
 //   })
 // );
 
-app.use("/listings",listings);
+app.use("/listings", listings);
 //Reviews:-Post Route
 app.post(
   "/listings/:id/reviews",
@@ -184,4 +184,3 @@ app.use((err, req, res, next) => {
 app.listen(3000, () => {
   console.log("server is listening to port 3000");
 });
-
